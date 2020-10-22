@@ -12,8 +12,7 @@ public class ex01
    System.out.print("   "+ch);
   }
   System.out.println();
-
-  for(ch=9332;ch<9342;ch++)
+  for(ch=9332+(0);ch<9342+(0);ch++)
   {
    //（2）这里的ch能否直接输出？为什么？
    System.out.print("   "+ch);
