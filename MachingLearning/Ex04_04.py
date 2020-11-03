@@ -30,6 +30,10 @@ for ii in range(7):
         classLabel = att    # 类别属性
 
 # 基于基尼值进行划分选择生成决策树，不剪枝S
+print(A)
+print(D)
+print(classLabel)
 myTree = tree_create_noCut(D, A, classLabel)
+
 # 绘制决策树的图
 tree_plot(myTree)

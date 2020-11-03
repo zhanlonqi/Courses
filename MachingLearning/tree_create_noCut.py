@@ -15,7 +15,7 @@ def f(D,A,classLabel,depth):
             label=classLabel['values'][0]
         return {'label':label,'class':'class','best':-1,'branch_num':0,'branchLabels':[],'branches':0}
     #首先决定这一层的特征
-    A,feature=calculateGini(D,A)
+    A,feature=calculateGini(D,A,classLabel)
     share_same_feature=True
     last_data=D[0][feature['id']-1]
     for i in range(num_data):
@@ -56,24 +56,43 @@ def decide(D):
             
 
 def comp(e):
-    return e[0]
+    return 1-e[0]
 
-def calculateGini(D,A):
+def GiniBase(D,classLabel):
+    num_label=len(classLabel['values'])
+    num_data=np.shape(D)[0]
+    ans=1
+    if(num_data==0):
+        return 1
+    for i in range(num_label):
+        count=0
+        for j in range(num_data):
+            if D[j][6]==i:
+                count+=1
+        ans-=pow(count/num_data,2)
+    return ans
+
+
+def calculateGini(D,A,classLabel):
+    print("")
     size=len(A)
     num_data=np.shape(D)[0]
-             
+    temp_D=[]
     Ginis=[]
     for i in range(size):
         num_att=A[i]['values'].size
+        gini=0
         for j in range(num_att):
-            gini=1
             count=0
+            temp_D=[]
             for k in range(num_data):
-                if D[k][i]%10==j:
+                if D[k][i]%10==j+1:
                     count+=1
-            gini-=pow(count/num_data,2)
+                    temp_D.append(D[k])
+            gini+=count/num_data*GiniBase(temp_D,classLabel)
         Ginis.append((gini,i))
     Ginis.sort(key=comp)
+    print(Ginis)
     next=Ginis.pop()[1]
     temp_A=A
     temp=temp_A.pop(next)

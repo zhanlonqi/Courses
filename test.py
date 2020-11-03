@@ -1,6 +1,4 @@
 import numpy as np
-def f(D):
-    print(np.shape(D))
-
-for i in range(5):
-    print(i)
+a=[1,2,3,4]
+a.pop(0)
+print(a)
