@@ -9,34 +9,29 @@ def tree_create_noCut(D,A,classLabel):
 def f(D,A,classLabel,depth):
     D=D.tolist()
     num_data=np.shape(D)[0]
-    if(num_data==0 or len(A)==0):
+    if(num_data==0):
+        return {'label':'none','class':'null','best':-1,'branch_num':0,'branchLabels':[],'branches':0}
+    if(len(A)==0 or GiniBase(D,classLabel)==0):
         label=classLabel['values'][1]
         if(decide(D)==0):
             label=classLabel['values'][0]
         return {'label':label,'class':'class','best':-1,'branch_num':0,'branchLabels':[],'branches':0}
-    #首先决定这一层的特征
     A,feature=calculateGini(D,A,classLabel)
-    share_same_feature=True
-    last_data=D[0][feature['id']-1]
-    for i in range(num_data):
-        if(i==0):
-            continue
-        if(D[i][feature['id']-1]!=last_data):
-            share_same_feature=False
-    if(share_same_feature):
-        label=classLabel['values'][1]
-        if(decide(D)==0):
-            label=classLabel['values'][0]
-        return {'label':label,'class':'class','best':-1,'branch_num':0,'branchLabels':[],'branches':0}
-    branch_num=feature['values'].size
+    features_num=feature['values'].size
+    branch_num=0
     branches=[]
-    for i in range(branch_num):
+    for i in range(features_num):
         temp=[]
         for ii in range(num_data):
             if D[ii][feature['id']-1]%10==i+1:
                 temp.append(D[ii])
-        temp=np.array(temp)
-        branches.append(f(temp,A,classLabel,depth+1))
+        temp=np.array(temp)      
+        if(len(temp)!=0):
+            branch_num+=1
+            print(feature['id'],i+1)
+            print(temp)
+            print()
+            branches.append(f(temp,A,classLabel,depth+1))
     return {'label':feature['name'],'class':'class','best':feature['id'],'branch_num':branch_num,'branchLabels':feature['values'],'branches':branches}
 
 
@@ -63,8 +58,8 @@ def GiniBase(D,classLabel):
     num_data=np.shape(D)[0]
     ans=1
     if(num_data==0):
-        return 1
-    for i in range(num_label):
+        return 0
+    for i in range(2):
         count=0
         for j in range(num_data):
             if D[j][6]==i:
@@ -74,7 +69,7 @@ def GiniBase(D,classLabel):
 
 
 def calculateGini(D,A,classLabel):
-    print("")
+
     size=len(A)
     num_data=np.shape(D)[0]
     temp_D=[]
@@ -94,6 +89,6 @@ def calculateGini(D,A,classLabel):
     Ginis.sort(key=comp)
     print(Ginis)
     next=Ginis.pop()[1]
-    temp_A=A
+    temp_A=A.copy()
     temp=temp_A.pop(next)
     return temp_A,temp
