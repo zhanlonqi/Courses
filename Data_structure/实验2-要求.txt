@@ -1,0 +1,16 @@
+实验名称：树的构造与遍历
+
+实验内容：
+（1）对于一段输入的文本（可包含任意ASCII码字符，示例如下），先统计每种字符（ASCII码值相同的字符是一种）的出现频次，
+     根据每种字符出现的频次进行Huffman编码，最后输出该文本的Huffman编码的码表（即每种字符对应的Huffman编码）；
+（2）中序遍历上述Huffman编码的Huffman树，输出经过的树结点上的频次信息。
+
+输入文本示例如下：
+Whether 60 or 16, there is in every human being’s heart the lure of wonders, the unfailing appetite for what’s next and the joy of the game of living. In the center of your heart and my heart, there is a wireless station; so long as it receives messages of beauty, hope, courage and power from man and from the infinite, so long as you are young.
+
+实验要求：
+（1）TextStatistics函数统计每种字符的出现频次（出现次数/字符总数），HuffmanTree函数构造Huffman树，
+     HuffmanCode函数生成Huffman编码，MidOrderTraverse函数实现Huffman树的中序遍历，
+     main函数实现输入任意文本，输出该文本的Huffman编码的码表和Huffman树中序遍历的结果；
+（2）用C语言实现程序，将调试通过的程序和程序的输出（按照输入文本示例进行输入）抄写到实验报告上；
+（3）实验报告用16K信纸或实验报告纸书写。
