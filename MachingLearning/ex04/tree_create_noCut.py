@@ -1,4 +1,5 @@
 import numpy as np
+import functools
 def tree_create_noCut(D,A,classLabel):
     i=D.shape[0]
     myTree=f(D,A,classLabel,1)
@@ -53,6 +54,9 @@ def decide(D):
 def comp(e):
     return 1-e[0]
 
+def cmp(e1,e2):
+    return e2[0]-e1[0]
+
 def GiniBase(D,classLabel):
     num_label=len(classLabel['values'])
     num_data=np.shape(D)[0]
@@ -86,7 +90,7 @@ def calculateGini(D,A,classLabel):
                     temp_D.append(D[k])
             gini+=count/num_data*GiniBase(temp_D,classLabel)
         Ginis.append((gini,i))
-    Ginis.sort(key=comp)
+    Ginis.sort(key=functools.cmp_to_key(cmp))
     print(Ginis)
     next=Ginis.pop()[1]
     temp_A=A.copy()
