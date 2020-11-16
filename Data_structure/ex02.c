@@ -37,96 +37,155 @@ typedef struct{        //Huffman树结点结构体
     int rchild;        //右孩子位置索引，初始-1
 } HNodeType;
 
-void str_input(char str[]) {
+void str_input(char str[]){
+    printf("Please input : ");
     //输入可包含空格的字符串，输入字符串存放在str中
     char c;
     int count=0;
-    while((c=getchar())!='\0'){
-        str[count++]=c;
-    }
+    gets(str);
 }
 
 int TextStatistics(char text[], char ch[], float weight[]) {
     //统计每种字符的出现频次，返回出现的不同字符的个数
     //出现的字符存放在ch中，对应字符的出现频次存放在weight中
-    int count=0,i=0;
+    int count=0;
+    int i=0,j=0;
     char c;
-    while((c=text[i++])!='\0'){
-        for( i=0;i<count;i++){
-            if(c==ch[i]){
-                weight[i]++;
+    while ((c=text[i++])!=0)
+    {
+        for(j=0;j<count;j++){
+            if(c==ch[j]){
                 break;
-            }
+                }
         }
-        if(i==count){
-            weight[i]=1;
+        if(j==count){
+            ch[count]=c;
+            weight[count]=1.f;
+            count++;
         }
+        else {
+            weight[j]+=1.f;
+        }
+    }
+    for(j=0;j<count;j++){
+        weight[j]=weight[j]/(i-1);
     }
     return count;
 }
 
 void HuffmanTree(HNodeType HuffNodes[], float weight[], int n){
     //构造一棵Huffman树，树结点存放在HuffNodes中
-    float temp[2*n-1];
-    int occupied[2*n-1];
+    float *temp=(float*)malloc(sizeof(float)*(2*n-1));
+    int *occupied=(int*)malloc(sizeof(int)*(2*n-1));
+    
+    for(int i=0;i<2*n-1;i++){
+        temp[i]=0;
+        occupied[i]=0;
+    }
     for(int i=0;i<n;i++){
         temp[i]=weight[i];
     }
-    
-    for(int i=0;i<n;i++){
-        int count=0;
-        int least=MAXVALUE;
+        float least=1.f;
         int least_index=0;
-        int second_least=MAXVALUE;
+        float second_least=1.f;
         int second_least_index=0;
-        for(int j=0;j<n+i;j++){
-            if(weight[j]<least&&occupied[j]==0){
+    for(int i=0;i<n-1;i++){
+         least=1.f;
+         least_index=0;
+         second_least=1.f;
+         second_least_index=0;
+        for(int j=n+i-1;j>=0;j--){
+            if(occupied[j]!=1&&temp[j]<=least){
                 second_least=least;
                 second_least_index=least_index;
-                least=weight[j];
+                least=temp[j];
                 least_index=j;
             }
-            occupied[least_index]=1;
-            occupied[second_least_index]=1;
-            temp[n+i]=least+second_least;
+            else if(occupied[j]!=1&&temp[j]<=second_least){
+                second_least=temp[j];
+                second_least_index=j;
+            }
         }
-        HNodeType root;
-        root.weight=least+second_least;
-        int root_index=n+count++;
-        HuffNodes[root_index]=root;
-
+        HNodeType lchild,rchild,parent;
+        lchild.parent=n+i;
+        lchild.weight=least;
         if(least_index<n){
-            HNodeType node;
-            node.lchild=NULL;
-            node.rchild=NULL;
-            node.parent=root_index;
-            node.weight=least+second_least;
-            HuffNodes[least_index]=node;
+            lchild.lchild=-1;
+            lchild.rchild=-1;
         }
         else{
-
+        lchild.lchild=HuffNodes[least_index].lchild;
+        lchild.rchild=HuffNodes[least_index].rchild;
         }
-        if(second_least_index<n){
-            HNodeType node2;
-            node2.lchild=NULL;
-            node2.rchild=NULL;
-            node2.weight=least+second_least;
-            HuffNodes[count++]=node2;
-        }    
-        
-        
-    }
+        HuffNodes[least_index]=lchild;
 
+        rchild.weight=second_least;
+        rchild.parent=n+i;
+        if(second_least_index<n){
+            rchild.lchild=-1;
+            rchild.rchild=-1;
+        }
+        else{
+        rchild.lchild=HuffNodes[second_least_index].lchild;
+        rchild.rchild=HuffNodes[second_least_index].rchild;
+        }
+        HuffNodes[second_least_index]=rchild;
+
+        parent.lchild=least_index;
+        parent.rchild=second_least_index;
+        parent.weight=least+second_least;
+        parent.parent=-1;
+        HuffNodes[n+i]=parent;
+
+        occupied[least_index]=1;
+        occupied[second_least_index]=1;
+        temp[n+i]=least+second_least;
+    }          
+    //最后还有个根节点
 }
 
-void HuffmanCode(HNodeType HuffNodes[], HCodeType HuffCodes[], int n) {
+void HuffmanCode(HNodeType HuffNodes[], HCodeType HuffCodes[], int n)  {
     //生成Huffman编码，Huffman编码存放在HuffCodes中
-
+    for(int i=0;i<n;i++){
+        HNodeType node=HuffNodes[i];
+        HNodeType temp=HuffNodes[node.parent];
+        int count=0;
+        int index=i;
+        printf("\n");
+        HCodeType code;
+        while(1){
+            //printf("node: %d  %s->",index,temp.lchild==index?"left":"right");
+            code.bit[n-2-count++]=(temp.lchild==index)?0:1;
+            index=node.parent;
+            node=temp;
+            if(temp.parent==-1)
+                break;
+            temp=HuffNodes[temp.parent];
+        }
+        code.start=n-1-count;
+        HuffCodes[i]=code;
+    }
 }
 
 int MidOrderTraverse(HNodeType HuffNodes[], float result[], int root, int resultIndex) {
+    printf("\ntraversing node: %d\n",root);
     //Huffman树的中序遍历，遍历结果存放在result中，返回下一个result位置索引
-
+    HNodeType rootNode=HuffNodes[root];
+    int next;
+    if(rootNode.lchild==-1){
+        printf("leaf !: %d \n");
+        result[resultIndex]=rootNode.weight;
+        return resultIndex+1;
+    }
+    else{
+        printf("node : %d\n");
+        next=MidOrderTraverse(HuffNodes,result,rootNode.lchild,resultIndex);
+        printf("adding node : %f",HuffNodes[next].weight);
+        result[next]=HuffNodes[next].weight;
+        next++;
+        next=MidOrderTraverse(HuffNodes,result,rootNode.rchild,next);
+    }
+    return next;
 }
 
 void main()
@@ -139,17 +198,14 @@ void main()
 
     str_input(text);
     n = TextStatistics(text, ch, weight);
-
     // 输出哈夫曼编码
     HuffmanTree(HuffNodes, weight, n);
     HuffmanCode(HuffNodes, HuffCodes, n);
 
     for (i=0; i<n; i++) { 
         printf("%c的Huffman编码是：", ch[i]);
-
         for(j=HuffCodes[i].start; j<n-1; j++)
             printf("%d", HuffCodes[i].bit[j]);
-
         printf("\n");
     }
 

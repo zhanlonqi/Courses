@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.io as scio
 
-from bp_create import bp_create
-from bp_pred import bp_pred
+#from bp_create import bp_create
+#from bp_pred import bp_pred
 import sys
 #用来正常显示中文
 plt.rcParams['font.sans-serif'] = ['SimHei']
@@ -18,13 +18,12 @@ data_path += '//..//data//watermelon_3.mat'
 # 读取 mat 文件中的数据
 data_dic = scio.loadmat(data_path)
 data = data_dic['watermelon_3']
-
 # 生成样本集和对应的类别标记
 x = preprocessing.MinMaxScaler().fit_transform(data[:, 0:8]) * 2 - 1    # 对样本集的每个属性进行归一化
 x = x.T                                                                 # 样本集，每一列对应一个样本
 t = data[:, 8, None].T                                                  # 样本类别标记，每一列对应一个样本，也是神经网络拟合目标
-
 # 建立一个三层BP神经网络，自己编写函数
+
 net, y, E = bp_create(x, t)
 
 # 显示迭代过程中的累积误差值
