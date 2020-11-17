@@ -23,7 +23,7 @@ x = preprocessing.MinMaxScaler().fit_transform(data[:, 0:8]) * 2 - 1    # 对样
 x = x.T                                                                 # 样本集，每一列对应一个样本
 t = data[:, 8, None].T                                                  # 样本类别标记，每一列对应一个样本，也是神经网络拟合目标
 # 建立一个三层BP神经网络，自己编写函数
-
+print(t.shape,x.shape)
 net, y, E = bp_create(x, t)
 
 # 显示迭代过程中的累积误差值
