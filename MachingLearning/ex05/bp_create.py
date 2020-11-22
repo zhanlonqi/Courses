@@ -1,25 +1,48 @@
 import numpy as np
-def bp_create(x, t):
-    num_hidden=10
-    theta=np.random(t.shape).repeat(x.shape[0])
-    gamma=np.random(num_hidden)
-    v=np.random(x.shape[1],num_hidden);
-    w=np.random(num_hidden,t.shape[1]);
-    learning_rate=0.001;
-    y_pred=np.zeros(t.shape)
-    for i in range(1000):
-        y_pred=w.T*(v.T*(x-theta)-gamma)
+def bp_create(x,t):
+    (e,f)=x.shape
+    l=t.shape[1]
+    h=6
+    learning_rate=0.01
+    v=np.random.random((f,h))
+    theta=np.random.random((1,h))
+    w=np.random.random((h,l))
+    gamma=np.random.random((l,1))
+    
+    for i in range(10):
+        print("iteratoring : ",i)
+        hidden_output=sigmoid(np.dot(x,v)-np.repeat(theta,e,axis=0))#e*h
+        output=sigmoid(np.dot(hidden_output,w)-np.repeat(gamma,l,axis=0))
+        error=output-t
+
+        g=np.multiply(output,1-output)
+        g=np.multiply(g,t-output)#e*l
+        
+        dw=learning_rate*np.dot(hidden_output.T,g)
+        w=w+dw;
+
+        E=np.multiply(hidden_output,1-hidden_output)*np.dot(g,w.T)#e*h
+        dv=learning_rate*np.dot(x.T,E)
+        v=v+dv;
+        
+        dgamma=-1*learning_rate*np.sum(g,axis=0)
+        gamma=gamma-dgamma
+
+        dtheta=-1*learning_rate*E
+        theta=theta-np.sum(dtheta,axis=0)
+        
+        
+        print(error)
 
 
-    return net, y, E  
+
+        
+        
+        
 
 def sigmoid(x):
-    return 1/(1+math.exp(-1*x))
+    return 1/(1+np.exp(-1*x))
 
-def sigmoid_derivative(x):
-    return sigmoid(x)*(1-sigmoid(x));
-
-def forward(x,t):
-    return
-
+a=np.array([[1,2,3],[4,5,6]])
+print(a[:,:-1])
 
