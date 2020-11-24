@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-20 14:55:21
- * @LastEditTime: 2020-11-23 14:31:05
+ * @LastEditTime: 2020-11-25 00:53:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Courses\Data_structure\实验3\ex03.c
@@ -14,7 +14,7 @@ typedef struct   //图的结构定义
 {
     int vertexNum;
     char vertex[MAX_VERTEX_NUM];
-    int edge[MAX_VERTEX_NUM][MAX_VERTEX_NUM];
+    int edge[MAX_VERTEX_NUM][MAX_VERTEX_NUM];                                                                            
 }Graph;
 
 void createdGraph(Graph *g)   //创建图
@@ -48,18 +48,12 @@ void createdGraph(Graph *g)   //创建图
                 printf("wrong node! ");
                 return;
             }
-            printf("%d  %d",i,index);
             g->edge[i][index]=1;
             g->edge[index][i]=1;
             count++;
         }
     }
-    for(int i=0;i<g->vertexNum;i++){
-        printf("\n");
-        for(int j=0;j<g->vertexNum;j++){
-            printf("  %d ",g->edge[i][j]);
-        }
-    }
+printf("\n");
 }
 
 void DFSTraverse(Graph *g, int visited[])   //图的深度优先搜索
@@ -123,7 +117,7 @@ void main()
   //初始化visited
   for(i=0; i<MAX_VERTEX_NUM; i++)
       visited[i] = 0;
-
+    printf("\n");
   ////广度优先
   BFSTraverse(graph, visited);
   return ;
