@@ -1,3 +1,5 @@
 *.class
 .vs/
+.vscode/
 *.exe
+build/
