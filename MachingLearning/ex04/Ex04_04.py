@@ -6,7 +6,7 @@ from tree_create_noCut import tree_create_noCut
 from tree_create_noCut import calculateGini
 import sys
 path=sys.path[0]
-datafile=path+"\\..\\data\\watermelon_2.mat"
+datafile=path+"/../data/watermelon_2.mat"
 # 读取 mat 文件中的数据
 data_dic = scio.loadmat(datafile)
 data = data_dic['watermelon_2']

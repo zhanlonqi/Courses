@@ -93,11 +93,11 @@ def tree_plot(myTree):
             nodes_pos[ii][jj] = ((jj+1) * gap_x, 1 - ii*gap_y)  # 结点x、y轴坐标
 
     # 开始绘制决策树，从最下面一层开始向上绘制（注：从上向下绘制显示效果会有点问题）
-<<<<<<< HEAD:MachingLearning/tree_plot.py
+#<<<<<<< HEAD:MachingLearning/tree_plot.py
     fig = plt.figure(1, facecolor='white', dpi=300)    # 新建一个画布，背景设置为白色的
-=======
+#=======
     fig = plt.figure(1, facecolor='white', dpi=200)    # 新建一个画布，背景设置为白色的
->>>>>>> e0d6017921497af112afec2c1dc727192b670386:MachingLearning/ex04/tree_plot.py
+#>>>>>>> e0d6017921497af112afec2c1dc727192b670386:MachingLearning/ex04/tree_plot.py
     fig.clf()                                          # 将画图清空
     ax = plt.subplot(111, frameon=False)               # 设置一个多图展示，但是子图只有一个
     

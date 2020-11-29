@@ -1,6 +1,7 @@
 import numpy as np
 import functools
 def tree_create_noCut(D,A,classLabel):
+    A=np.array(A)
     i=D.shape[0]
     myTree=f(D,A,classLabel,1)
     #print(myTree[0])
