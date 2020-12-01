@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": "Courses_2113e60d"
+        },
+        {
             "name": "Python: 当前文件",
             "type": "python",
             "request": "launch",

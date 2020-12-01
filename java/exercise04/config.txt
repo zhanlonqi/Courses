@@ -1,0 +1,14 @@
+1 0 3
+12
+zhan 0 0 1
+wong 0 1 1
+liu 0 1 0
+wei 1 0 1
+qiu 1 0 1
+shao 1 1 2
+zha 0 0 1
+won 0 0 1
+li 1 1 0
+qian 1 0 1
+sun 0 0 1
+chen 1 1 2
