@@ -18,30 +18,31 @@ class MoneyBox {   //售票员钱箱
         num_cash[1]=num_10;
         num_cash[2]=num_20;
     }
-}
+ }
 
-class BuyAndSell extends Thread {
+class BuyAndSell implements Runnable {
     MoneyBox mb;
-    String name;
+    List<customer> customers;
     int max_wait_time=10;
-    int num_cash[]=new int[3];
-    int num_customer=0;
-    public BuyAndSell(MoneyBox mb,String name,int num_5,int num_10,int num_20){
+    static int num_customer=0;
+    public BuyAndSell(MoneyBox mb,List<customer> customers){
         this.mb=mb;
-        this.name=name;
-        num_cash[0]=num_5;
-        num_cash[1]=num_10;
-        num_cash[2]=num_20;
+        this.customers=customers;
     }
-    public void run(){//优先找大纸币 优先给小纸币
+    public void run(){
+        sell();
+    };//优先找大纸币 优先给小纸币
+    private synchronized void sell(){ 
+        System.out.println("Starting to treat customer"+(num_customer+1));
+        customer c=customers.get(num_customer++);
         int error=0;
         int sum=0;
-        for(int i=0;i<num_cash.length&&sum<mb.price;i++){
-            while(sum<mb.price&&num_cash[i]>0){
+        for(int i=0;i<c.num_cash.length&&sum<mb.price;i++){
+            while(sum<mb.price&&c.num_cash[i]>0){
                 sum+=mb.cash_value[i];
                 System.out.println("Receive  a $"+mb.cash_value[i]);
                 mb.num_cash[i]++;
-                num_cash[i]--;
+                c.num_cash[i]--;
             }
         }
         System.out.println("There are  "+mb.num_cash[0]+" $5 ,"+mb.num_cash[1]+" $10 ," +mb.num_cash[2]+" $20");
@@ -50,31 +51,42 @@ class BuyAndSell extends Thread {
         int temp[]=new int[mb.num_cash.length];
         while(temp_error>0&&max_wait_time>0){
             temp_error=error;
-            for(int i=num_cash.length-1;i>=0&&error>0;i--){
+            for(int i=c.num_cash.length-1;i>=0&&error>0;i--){
                 while(temp_error>0&&temp[i]<mb.num_cash[i]&&temp_error-mb.cash_value[i]>=0){
                     temp_error-=mb.cash_value[i];
                     temp[i]++;
                 }
             }
             try{
-                Thread.sleep(50);
+                if(temp_error>0){
+                    System.out.println(num_customer+" : No enough changes ,please wait !");
+                    max_wait_time--; 
+                }
+                wait(1);
             }catch(Exception e){
                 e.printStackTrace();
             }
-            if(temp_error>0){
-                System.out.println("No enough changes ,please wait !");
-                max_wait_time--;
-            }
+
         }
-        if(max_wait_time<=0)
+        if(max_wait_time<=0){
+            System.out.println("Time out "+" leave");
             return;
+        }
         System.out.println("Give out  "+temp[0]+" 5$ ,"+temp[1]+" 10$  ,"+temp[2]+ "  20$ " );
         for(int i=0;i<mb.num_cash.length;i++){
             mb.num_cash[i]-=temp[i];
         }
+}  
+}
+
+class customer{
+    String name;
+    int num_cash[]=new int[3];
+    public customer(String name,int num_5,int num_10,int num_20){
+        this.num_cash[0]=num_5;
+        this.num_cash[1]=num_10;
+        this.num_cash[2]=num_20;
     }
-    
-        
 }
 
 
@@ -88,15 +100,19 @@ public class Test {
         temp=br.readLine().split(" ");
         MoneyBox mb=new MoneyBox(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Integer.parseInt(temp[2]));
         int num_costomer=Integer.parseInt(br.readLine());
-        List<BuyAndSell> costomers=new ArrayList<BuyAndSell>();
+        List<customer> customers=new ArrayList<customer>();
+        List<Thread> threads=new ArrayList<>();
+        //List<BuyAndSell> threads=new ArrayList<>();
+        BuyAndSell bs=new BuyAndSell(mb, customers);
+
         for(int i=0;i<num_costomer;i++){
             temp=br.readLine().split(" ");
-            costomers.add(new BuyAndSell(mb,temp[0],Integer.parseInt(temp[1]),Integer.parseInt(temp[2]),Integer.parseInt(temp[3])));
+            customers.add(new customer(temp[0],Integer.parseInt(temp[1]),Integer.parseInt(temp[2]),Integer.parseInt(temp[3])));
         }
         for(int i=0;i<num_costomer;i++){
-            System.out.println("Starting to treat customer"+i);
-            costomers.get(i).start();
-            Thread.sleep(120);
+
+            threads.add(new Thread(bs,""+i));
+            threads.get(i).start();
         }
     }
 }

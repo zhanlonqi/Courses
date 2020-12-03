@@ -8,4 +8,4 @@ function f2()
     y=y-1/(2*(n-1)-1);
     n=n-2;
     disp(y);
-    dsip(n)
+    disp(n)

@@ -4,4 +4,5 @@ function f1_1()
     for i=1:n
         y=y+1/(2*i-1)/3^(2*i-1);
     end
-    disp(y)
+    disp(log(2)/2);
+    disp(y);
