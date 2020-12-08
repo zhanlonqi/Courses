@@ -1,0 +1,45 @@
+#1.1
+CREATE TABLE student(SNO INT,
+                    SNAME CHAR(8),
+                    SEX CHAR(2),
+                    DEPNO INT);
+
+CREATE  TABLE Course(CNO INT ,
+                    CNAME CHAR(20),
+                    TNO INT ,
+                    CREDIT INT,
+                    PRIMARY KEY (CNO,TNO)
+                    );
+
+
+CREATE TABLE SC(SNO INT ,
+                CNO INT,
+                GRADE INT,
+                PRIMARY KEY(CNO,SNO));
+
+DROP TABLE IF EXISTS Teacher;
+CREATE  TABLE Teacher(TNO int  ,
+                        TNAME CHAR(8) NOT NULL,
+                        DEPTNO INT,
+                        PRIMARY KEY(TNO));
+
+CREATE TABLE Dept(DEPTNO INT,
+                    DNAME CHAR(20),
+                    PRIMARY KEY(DEPTNO));
+
+#1.2
+ALTER TABLE student ADD  SAGE INT;
+ALTER TABLE student CHANGE SAGE SAGE SMALLINT; 
+
+#1.3
+DROP TABLE IF EXISTS Dept;
+DROP TABLE IF EXISTS SC;
+DROP TABLE IF EXISTS Course;
+DROP TABLE  IF EXISTS student;
+
+#2.1
+ALTER TABLE student ADD UNIQUE (SNO);
+ALTER TABLE Course add UNIQUE (CNO ASC );
+
+#2.2
+ALTER TABLE student DROP INDEX  SNO;
