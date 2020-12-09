@@ -10,9 +10,7 @@ import math
     #   nbModel   训练好的分类器，字典类型
 
 def nbc_train(D, D_labels, A, lp=1):
-    top=0;
-    if(lp==1):
-        top=1;
+
     Ni=[]
     
     for i in range(6):

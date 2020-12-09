@@ -22,7 +22,7 @@ class MoneyBox {   //售票员钱箱
         this.customers=customers;
     }
     public synchronized void sell(){ 
-        System.out.println("Starting to treat customer"+(num_customer+1));
+        System.out.println("\nStarting to treat customer"+(num_customer+1));
         customer c=customers.get(num_customer++);
         int error=0;
         int sum=0;
@@ -51,7 +51,7 @@ class MoneyBox {   //售票员钱箱
                     System.out.println(num_customer+" : No enough changes ,please wait !");
                     max_wait_time--; 
                 }
-                wait(1);
+                wait();
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -101,17 +101,17 @@ public class Test {
         BufferedReader br=new BufferedReader(fr);
         String s;
         String temp[];
-        int num_costomer=Integer.parseInt(br.readLine());
+        int num_costomer=Integer.parseInt(br.readLine().split(" ")[1]);
         List<customer> customers=new ArrayList<customer>();
         List<Thread> threads=new ArrayList<>();
         
 
         for(int i=0;i<num_costomer;i++){
             temp=br.readLine().split(" ");
-            customers.add(new customer(temp[0],Integer.parseInt(temp[1]),Integer.parseInt(temp[2]),Integer.parseInt(temp[3])));
+            customers.add(new customer(temp[1],Integer.parseInt(temp[2]),Integer.parseInt(temp[3]),Integer.parseInt(temp[4])));
         }
         temp=br.readLine().split(" ");
-        MoneyBox mb=new MoneyBox(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Integer.parseInt(temp[2]),customers);
+        MoneyBox mb=new MoneyBox(Integer.parseInt(temp[1]),Integer.parseInt(temp[2]),Integer.parseInt(temp[3]),customers);
         BuyAndSell bs=new BuyAndSell(mb);
         for(int i=0;i<num_costomer;i++){
             threads.add(new Thread(bs,""+i));

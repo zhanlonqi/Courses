@@ -1,69 +1,64 @@
-Starting to treat customer0
-Receive  a $20
-There are  1 $5 ,0 $10 ,4 $20
-No enough changes ,please wait !
-No enough changes ,please wait !
 Starting to treat customer1
 Receive  a $10
-There are  1 $5 ,1 $10 ,4 $20
-No enough changes ,please wait !
-Give out  1 5$ ,0 10$  ,0  20$ 
-No enough changes ,please wait !
+There are  0 $5 ,1 $10 ,0 $20
+1 : No enough changes ,please wait !
+
 Starting to treat customer2
 Receive  a $10
-There are  0 $5 ,2 $10 ,4 $20
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
+There are  0 $5 ,2 $10 ,0 $20
+2 : No enough changes ,please wait !
+
 Starting to treat customer3
-Receive  a $5
-There are  1 $5 ,2 $10 ,4 $20
-Give out  0 5$ ,0 10$  ,0  20$ 
-No enough changes ,please wait !
-No enough changes ,please wait !
-Give out  1 5$ ,0 10$  ,0  20$ 
-No enough changes ,please wait !
+Receive  a $10
+There are  0 $5 ,3 $10 ,0 $20
+3 : No enough changes ,please wait !
+
 Starting to treat customer4
-Receive  a $5
-There are  1 $5 ,2 $10 ,4 $20
-Give out  0 5$ ,0 10$  ,0  20$ 
-No enough changes ,please wait !
+Receive  a $10
+There are  0 $5 ,4 $10 ,0 $20
+4 : No enough changes ,please wait !
+
 Starting to treat customer5
-Receive  a $5
-There are  2 $5 ,2 $10 ,4 $20
-Give out  0 5$ ,0 10$  ,0  20$ 
+Receive  a $10
+There are  0 $5 ,5 $10 ,0 $20
+5 : No enough changes ,please wait !
+
 Starting to treat customer6
-Receive  a $20
-There are  2 $5 ,2 $10 ,5 $20
-Give out  1 5$ ,1 10$  ,0  20$ 
+Receive  a $5
+There are  1 $5 ,5 $10 ,0 $20
+Give out  0 5$ ,0 10$  ,0  20$ 
+
 Starting to treat customer7
-Receive  a $20
-There are  1 $5 ,1 $10 ,6 $20
-Give out  1 5$ ,1 10$  ,0  20$ 
+Receive  a $5
+There are  2 $5 ,5 $10 ,0 $20
+Give out  0 5$ ,0 10$  ,0  20$ 
+
 Starting to treat customer8
 Receive  a $5
-There are  1 $5 ,0 $10 ,6 $20
+There are  3 $5 ,5 $10 ,0 $20
 Give out  0 5$ ,0 10$  ,0  20$ 
+
 Starting to treat customer9
 Receive  a $5
-There are  2 $5 ,0 $10 ,6 $20
+There are  4 $5 ,5 $10 ,0 $20
 Give out  0 5$ ,0 10$  ,0  20$ 
+
 Starting to treat customer10
-Receive  a $20
-There are  2 $5 ,0 $10 ,7 $20
-No enough changes ,please wait !
-No enough changes ,please wait !
+Receive  a $5
+There are  5 $5 ,5 $10 ,0 $20
+Give out  0 5$ ,0 10$  ,0  20$ 
+
 Starting to treat customer11
 Receive  a $5
-There are  3 $5 ,0 $10 ,7 $20
+There are  6 $5 ,5 $10 ,0 $20
 Give out  0 5$ ,0 10$  ,0  20$ 
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
-No enough changes ,please wait !
+
+Starting to treat customer12
+Receive  a $5
+There are  7 $5 ,5 $10 ,0 $20
+Give out  0 5$ ,0 10$  ,0  20$ 
+Give out  1 5$ ,0 10$  ,0  20$ 
+Give out  1 5$ ,0 10$  ,0  20$ 
+Give out  1 5$ ,0 10$  ,0  20$ 
+Give out  1 5$ ,0 10$  ,0  20$ 
+Give out  1 5$ ,0 10$  ,0  20$ 
