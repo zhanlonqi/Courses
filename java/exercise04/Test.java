@@ -22,8 +22,8 @@ class MoneyBox {   //售票员钱箱
         this.customers=customers;
     }
     public synchronized void sell(){ 
-        System.out.println("\nStarting to treat customer"+(num_customer+1));
         customer c=customers.get(num_customer++);
+        System.out.println("\nStarting to treat customer"+c.name);
         int error=0;
         int sum=0;
         for(int i=0;i<c.num_cash.length&&sum<price;i++){
@@ -39,6 +39,7 @@ class MoneyBox {   //售票员钱箱
         int temp_error=error;
         int temp[]=new int[num_cash.length];
         while(temp_error>0&&max_wait_time>0){
+            System.out.println("Getting changes for customer "+c.name);
             temp_error=error;
             for(int i=c.num_cash.length-1;i>=0&&error>0;i--){
                 while(temp_error>0&&temp[i]<num_cash[i]&&temp_error-cash_value[i]>=0){
@@ -48,14 +49,14 @@ class MoneyBox {   //售票员钱箱
             }
             try{
                 if(temp_error>0){
-                    System.out.println(num_customer+" : No enough changes ,please wait !");
+                    System.out.println(c.name+" : No enough changes ,please wait !");
                     max_wait_time--; 
+                    wait();
+                    System.out.println(c.name+" awake");
                 }
-                wait();
             }catch(Exception e){
                 e.printStackTrace();
             }
-
         }
         if(max_wait_time<=0){
             System.out.println("Time out "+" leave");
@@ -65,7 +66,7 @@ class MoneyBox {   //售票员钱箱
         for(int i=0;i<num_cash.length;i++){
             num_cash[i]-=temp[i];
         }
-        notifyAll();
+        notify();
 }  
  }
 
@@ -87,6 +88,7 @@ class customer{
     String name;
     int num_cash[]=new int[3];
     public customer(String name,int num_5,int num_10,int num_20){
+        this.name=name;
         this.num_cash[0]=num_5;
         this.num_cash[1]=num_10;
         this.num_cash[2]=num_20;
@@ -115,6 +117,7 @@ public class Test {
         BuyAndSell bs=new BuyAndSell(mb);
         for(int i=0;i<num_costomer;i++){
             threads.add(new Thread(bs,""+i));
+            Thread.sleep(100);
             threads.get(i).start();
         }
     }
