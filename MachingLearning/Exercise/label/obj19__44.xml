@@ -1,0 +1,26 @@
+<annotation>
+	<folder>label</folder>
+	<filename>obj19__44.png</filename>
+	<path>/home/zhan/work/Courses/MachingLearning/Exercise/coil-20-proc/obj19__44.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>128</width>
+		<height>128</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car19</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>3</xmin>
+			<ymin>1</ymin>
+			<xmax>123</xmax>
+			<ymax>126</ymax>
+		</bndbox>
+	</object>
+</annotation>

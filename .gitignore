@@ -4,6 +4,5 @@
 *.exe
 build/
 *.fig
-*.xml
 *.png
 
