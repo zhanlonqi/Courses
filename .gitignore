@@ -5,4 +5,12 @@
 build/
 *.fig
 *.png
+dist/
+model_data/
+*.md
+*.jpg
+*.jpeg
+*.png
+*.xml
+*.pyc
 
