@@ -1,14 +1,14 @@
-12
-zhan 0 1 0
-wong 0 1 0
-liu 0 1 0
-wei 0 1 1
-qiu 0 1 0
-shao 1 1 2
-zha 1 0 1
-won 1 0 1
-li 1 1 0
-qian 1 0 1
-sun 1 0 1
-chen 1 1 2
-0 0 0
+num_customer 12
+customer zhan 0 1 0
+customer wong 0 1 0
+customer liu 0 1 0
+customer wei 0 1 1
+customer qiu 0 1 0
+customer shao 1 1 2
+customer zha 1 0 1
+customer won 1 0 1
+customer li 1 1 0
+customer qian 1 0 1
+customer sun 1 0 1
+customer chen 1 1 2
+moneybox 0 0 0

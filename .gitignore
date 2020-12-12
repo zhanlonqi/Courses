@@ -4,6 +4,13 @@
 *.exe
 build/
 *.fig
-*.xml
 *.png
+dist/
+model_data/
+*.md
+*.jpg
+*.jpeg
+*.png
+*.xml
+*.pyc
 
