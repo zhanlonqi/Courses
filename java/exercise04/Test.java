@@ -51,7 +51,7 @@ class MoneyBox {   // €∆±‘±«Æœ‰
                     System.out.println(num_customer+" : No enough changes ,please wait !");
                     max_wait_time--; 
                 }
-                wait(1);
+                wait();   
             }catch(Exception e){
                 e.printStackTrace();
             }
