@@ -13,4 +13,5 @@ model_data/
 *.png
 *.xml
 *.pyc
-
+*.pth
+*.slx
