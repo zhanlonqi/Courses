@@ -13,5 +13,10 @@ model_data/
 *.png
 *.xml
 *.pyc
+<<<<<<< HEAD
 java/exercise05/ch07
 *.ppt
+=======
+*.pth
+*.slx
+>>>>>>> f70b2c21c460727907af3b3d296c5b779c049e08
