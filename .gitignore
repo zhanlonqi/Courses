@@ -13,4 +13,5 @@ model_data/
 *.png
 *.xml
 *.pyc
-
+java/exercise05/ch07
+*.ppt
