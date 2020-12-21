@@ -12,17 +12,45 @@ int Search_Bin(DataTable *L, int key)
 {
     //在升序有序表L中二分查找值等于key的数据元素
     //若找到，则函数返回值为该元素在表中的位置索引，否则为-1
-
+    int left=0,right=L->length-1,mid=0;
+    while(left<=right){
+        mid=(left+right)/2;
+        if(L->data[mid]==key){
+            return mid;
+        }
+        else if(key<L->data[mid]){
+            right=mid-1;
+        }
+        else{
+            left=mid+1;
+        }
+    }
+    return -1;
 }
 
 void Insert_Sort(DataTable *L)  //直接插入排序
 {
-
+    for(int i=1;i<L->length;i++){
+        int index=i-1,temp=L->data[i];
+        while(index>=0&&L->data[index]>=temp){
+            L->data[index+1]=L->data[index];
+            index--;
+        }  
+        L->data[index+1]=temp;
+    }
 }
 
 void Bubble_Sort(DataTable *L)  //冒泡排序
 {
-
+    for(int i=1;i<L->length;i++){
+        for(int j=0;j<L->length-i;j++){
+            if(L->data[j]>L->data[j+1]){
+                int temp=L->data[j];
+                L->data[j]=L->data[j+1];
+                L->data[j+1]=temp;
+            }
+        }
+    }
 }
 
 void DataTable_Output(DataTable *L) //依次输出数据表的每个元素
