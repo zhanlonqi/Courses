@@ -13,6 +13,29 @@ import java.awt.event.*;
     }
 }
 
+class myButtonListener1 implements ActionListener{
+    Label l;
+    TextField f1,f2;
+    public myButtonListener1(Label l,TextField f1,TextField f2){
+        this.l=l;
+        this.f1=f1;
+        this.f2=f2;
+}
+    public void actionPerformed(ActionEvent e){
+        int ans=Integer.parseInt(f1.getText())*Integer.parseInt(f2.getText());
+        String s="两个数的乘积是"+ans;
+        l.setText(s);
+    }
+}
+
+class myButtonListener2 implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+        f.setVisible(false);
+        f.dispose();
+        System.exit(0);  
+    }
+}
+
 
 class Test {
     
@@ -39,29 +62,6 @@ class Test {
     f.add(l);
     f.add(b);
     f.add(exit);
-
-    class myButtonListener1 implements ActionListener{
-        Label l;
-        TextField f1,f2;
-        public myButtonListener1(Label l,TextField f1,TextField f2){
-            this.l=l;
-            this.f1=f1;
-            this.f2=f2;
-    }
-        public void actionPerformed(ActionEvent e){
-            int ans=Integer.parseInt(f1.getText())*Integer.parseInt(f2.getText());
-            String s="两个数的乘积是"+ans;
-            l.setText(s);
-        }
-    }
-
-    class myButtonListener2 implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            f.setVisible(false);
-            f.dispose();
-            System.exit(0);
-        }
-    }
 
     f.setSize(400,400);
     f.addWindowListener(new myWindowListener());
