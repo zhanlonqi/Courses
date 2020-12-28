@@ -1,0 +1,114 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "Data_structure": {
+      "name": "Data_structure",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "DB": {
+      "name": "DB",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "java": {
+      "name": "java",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "MachingLearning": {
+      "name": "MachingLearning",
+      "isOrdered": true,
+      "folders": {
+        "__pycache__": {
+          "name": "__pycache__",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "data": {
+          "name": "data",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "ex04": {
+          "name": "ex04",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "ex05": {
+          "name": "ex05",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "ex06_07-03": {
+          "name": "ex06_07-03",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "ex06": {
+          "name": "ex06",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "ex07": {
+          "name": "ex07",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "ex08": {
+          "name": "ex08",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "ex09": {
+          "name": "ex09",
+          "isOrdered": true,
+          "folders": {
+            "__pycache__": {
+              "name": "__pycache__",
+              "isOrdered": true,
+              "folders": {},
+              "files": {}
+            }
+          },
+          "files": {}
+        },
+        "Exercise": {
+          "name": "Exercise",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "review": {
+          "name": "review",
+          "isOrdered": true,
+          "folders": {},
+          "files": {
+            "r2": 0,
+            "r1": 1
+          }
+        }
+      },
+      "files": {}
+    },
+    "Matlab": {
+      "name": "Matlab",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    }
+  },
+  "files": {}
+}
