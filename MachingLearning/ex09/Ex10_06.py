@@ -18,7 +18,7 @@ data_path =sys.path[0]+'/../data/yalemat.mat'
 data_dic = scio.loadmat(data_path)
 X = data_dic['yalemat'].T    # 样本集，每一行对应一个样本
 
-pca = PCA(n_components=0.95)# 保证降维后的数据保持90%的信息
+pca = PCA(n_components=0.01)# 保证降维后的数据保持90%的信息
 
 x=pca.fit_transform(X.T)
 res=pca.inverse_transform(x)

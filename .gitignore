@@ -7,7 +7,6 @@ build/
 *.png
 dist/
 model_data/
-*.md
 *.jpg
 *.jpeg
 *.png
