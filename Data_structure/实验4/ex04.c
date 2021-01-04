@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define MAX_DATA_NUM 30   //输入数据最大数量
+#define MAX_DATA_NUM 30   //输入数据最大数�?
 
 typedef struct   //数据表的结构定义
 {
@@ -10,8 +10,8 @@ typedef struct   //数据表的结构定义
 
 int Search_Bin(DataTable *L, int key)
 {
-    //在升序有序表L中二分查找值等于key的数据元素
-    //若找到，则函数返回值为该元素在表中的位置索引，否则为-1
+    //在升序有序表L中二分查找值等于key的数据元�?
+    //若找到，则函数返回值为该元素在表中的位置索引，否则�?-1
     int left=0,right=L->length-1,mid=0;
     while(left<=right){
         mid=(left+right)/2;
@@ -72,33 +72,33 @@ void main()
     L1 = (DataTable *)malloc(sizeof(DataTable));
     L2 = (DataTable *)malloc(sizeof(DataTable));
 
-    printf ("请输入数据表的元素个数，不超过%d个：", MAX_DATA_NUM);
+    printf ("请输入数据表的元素个数，不超�?%d个：", MAX_DATA_NUM);
     scanf("%d", &L1->length);
     L2->length = L1->length;
 
     for(i=0; i < L1->length; i++) {
-        printf("请输入数据表第%d个元素值：", i+1);
+        printf("请输入数据表�?%d个元素值：", i+1);
         scanf("%d", &L1->data[i]);
         L2->data[i] = L1->data[i];
     }
     printf("\n");
 
-    printf ("排序前的数据表L1：");
+    printf ("排序前的数据表L1�?");
     DataTable_Output(L1);
 
-    printf ("直接插入排序后的数据表L1：");
+    printf ("直接插入排序后的数据表L1�?");
     Insert_Sort(L1);
     DataTable_Output(L1);
 
-    printf ("排序前的数据表L2：");
+    printf ("排序前的数据表L2�?");
     DataTable_Output(L2);
 
-    printf ("冒泡排序后的数据表L2：");
+    printf ("冒泡排序后的数据表L2�?");
     Bubble_Sort(L2);
     DataTable_Output(L2);
 
     printf ("请输入要查找的元素值：");
     scanf("%d", &i);
 
-    printf ("在数据表L1中二分查找元素%d的结果是：%d\n", i, Search_Bin(L1, i));
+    printf ("在数据表L1中二分查找元�?%d的结果是�?%d\n", i, Search_Bin(L1, i));
 }
